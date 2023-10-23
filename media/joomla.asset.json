@@ -1,0 +1,22 @@
+{
+	"$schema": "https://developer.joomla.org/schemas/json-schema/web_assets.json",
+	"name": "mod_admin_revars",
+	"version": "0.0.1-dev",
+	"description": "Revars Administrator Module",
+	"license": "GPL-3.0-or-later",
+	"assets": [
+		{
+			"name": "mod_admin_revars.ajax",
+			"type": "script",
+			"uri": "mod_admin_revars/ajax.min.js",
+			"dependencies": [
+				"core"
+			],
+			"attributes": {
+				"defer": true,
+				"type": "module"
+			},
+			"version": "auto"
+		}
+	]
+}

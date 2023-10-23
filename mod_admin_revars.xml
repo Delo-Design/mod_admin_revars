@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="3.9" type="module" client="administrator" method="upgrade">
+	<name>MOD_ADMIN_REVARS</name>
+	<author>Delo Design</author>
+	<creationDate>October 2023</creationDate>
+	<copyright>Copyright © 2021 Delo Design. All rights reserved.</copyright>
+	<license>https://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
+	<authorEmail>boss@delo-design.ru</authorEmail>
+	<authorUrl>https://delo-design.ru</authorUrl>
+	<version>0.0.1-dev</version>
+	<description>MOD_ADMIN_REVARS_DESCRIPTION</description>
+	<scriptfile>script.php</scriptfile>
+	<namespace path="src">Joomla\Module\AdminRevars</namespace>
+	<languages folder="language">
+		<language tag="en-GB">en-GB/en-GB.mod_admin_revars.ini</language>
+		<language tag="en-GB">en-GB/en-GB.mod_admin_revars.sys.ini</language>
+		<language tag="ru-RU">ru-RU/ru-RU.mod_admin_revars.ini</language>
+		<language tag="ru-RU">ru-RU/ru-RU.mod_admin_revars.sys.ini</language>
+	</languages>
+	<files>
+		<folder module="mod_admin_revars">src</folder>
+		<folder>services</folder>
+		<folder>tmpl</folder>
+	</files>
+	<config>
+		<fields name="params">
+			<fieldset name="basic">
+				<field name="variables" type="variables"
+					   label="MOD_ADMIN_REVARS_PARAMS_VARIABLES"
+					   addfieldprefix="Joomla\Module\AdminRevars\Administrator\Field"
+					   layout="joomla.form.field.list-fancy-select"
+					   multiple="true"/>
+			</fieldset>
+			<fieldset name="advanced">
+				<field name="layout" type="modulelayout"
+					   label="JFIELD_ALT_LAYOUT_LABEL"
+					   class="form-select"
+					   validate="moduleLayout"/>
+
+				<field name="moduleclass_sfx" type="textarea"
+					   label="COM_MODULES_FIELD_MODULECLASS_SFX_LABEL"
+					   rows="3"
+					   validate="CssIdentifier"/>
+
+				<field name="cache" type="list"
+					   label="COM_MODULES_FIELD_CACHING_LABEL"
+					   default="0"
+					   filter="integer"
+					   validate="options">
+					<option value="1">JGLOBAL_USE_GLOBAL</option>
+					<option value="0">COM_MODULES_FIELD_VALUE_NOCACHING</option>
+				</field>
+
+				<field name="cache_time" type="number"
+					   label="COM_MODULES_FIELD_CACHE_TIME_LABEL"
+					   default="900"
+					   filter="integer"
+					   min="1"
+					   validate="number"/>
+			</fieldset>
+		</fields>
+	</config>
+	<media destination="mod_admin_revars" folder="media">
+		<folder>js</folder>
+		<filename>joomla.asset.json</filename>
+	</media>
+</extension>
