@@ -13,6 +13,7 @@ namespace Joomla\Module\AdminRevars\Administrator\Helper;
 
 \defined('_JEXEC') or die;
 
+use Joomla\CMS\Cache\CacheControllerFactoryInterface;
 use Joomla\CMS\Factory;
 use Joomla\CMS\Form\Form;
 use Joomla\CMS\Form\FormFactoryInterface;
@@ -189,6 +190,16 @@ class AdminRevarsHelper
 			$update->params['variables'] = $variables;
 			$update->params              = (new Registry($update->params))->toString();
 			$db->updateObject('#__extensions', $update, 'extension_id');
+
+			$cacheFactory = Factory::getContainer()->get(CacheControllerFactoryInterface::class);
+			$options      = [
+				'defaultgroup' => 'com_plugins',
+				'cachebase'    => $app->get('cache_path', JPATH_CACHE),
+				'result'       => true,
+			];
+
+			$cache = $cacheFactory->createCacheController('callback', $options);
+			$cache->clean();
 
 			self::$_plugin = null;
 		}
