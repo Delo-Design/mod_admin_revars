@@ -33,15 +33,17 @@ window.ModAdminRevars = {
 				notify: [response.message]
 			}, messagesContainer);
 		}).catch(function (error) {
-			if (messages) {
-				messages.style.display = '';
-			}
-			Joomla.renderMessages({
-				error: [error.message]
-			}, messagesContainer);
 			form.querySelectorAll('button').forEach(function (button) {
 				button.removeAttribute('disabled');
 			});
+
+			if (messages) {
+				messages.style.display = '';
+			}
+
+			Joomla.renderMessages({
+				error: [error.message]
+			}, messagesContainer);
 		});
 
 		return false;

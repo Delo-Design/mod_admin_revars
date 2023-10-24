@@ -174,8 +174,11 @@ class AdminRevarsHelper
 		{
 			if (!empty($data[$variable['variable']]))
 			{
-				$changes[]         = $variable['variable'];
-				$variable['value'] = $data[$variable['variable']];
+				if ($variable['value'] !== $data[$variable['variable']])
+				{
+					$changes[]         = $variable['variable'];
+					$variable['value'] = $data[$variable['variable']];
+				}
 			}
 		}
 
