@@ -62,6 +62,8 @@ class AdminRevarsHelper
 	 * @param   object    $module  Module data object.
 	 * @param   Registry  $params  Module params.
 	 *
+	 * @throws \Exception
+	 *
 	 * @return  Form|false  The Form object or false on error.
 	 *
 	 * @since  __DEPLOY_VERSION__
