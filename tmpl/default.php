@@ -36,16 +36,17 @@ if (empty($form) || empty($plugin))
 /** @var Joomla\CMS\WebAsset\WebAssetManager $assets */
 $assets = Factory::getApplication()->getDocument()->getWebAssetManager();
 $assets->useScript('mod_admin_revars.ajax');
-
 ?>
-<form action="<?php echo $action; ?>" method="get" onsubmit="window.ModAdminRevars.ajaxSubmit(event);"
-	  class="px-3 pb-3">
+<form action="<?php echo $action; ?>" method="post" mod_admin_revars="form"
+	  onsubmit="window.ModAdminRevars.ajaxSubmit(event);" class="px-3 pb-3">
+	<?php if ($plugin->link): ?>
+		<div class="mb-3">
+			<a href="<?php echo $plugin->link; ?>" target="_blank">
+				<?php echo Text::_('MOD_ADMIN_REVARS_GO_TO_PLUGIN'); ?>
+			</a>
+		</div>
+	<?php endif; ?>
 	<div class="mb-3">
-		<a href="<?php echo $plugin->link; ?>" target="_blank">
-			<?php echo Text::_('MOD_ADMIN_REVARS_GO_TO_PLUGIN'); ?>
-		</a>
-	</div>
-	<div>
 		<?php foreach ($form->getFieldsets() as $fieldset)
 		{
 			echo $form->renderFieldset($fieldset->name);
@@ -53,7 +54,11 @@ $assets->useScript('mod_admin_revars.ajax');
 		<input type="hidden" name="module_id" value="<?php echo $module->id; ?>"/>
 		<?php echo HTMLHelper::_('form.token'); ?>
 	</div>
+	<div mod_admin_revars="messages" style="display: none;" class="mb-3"></div>
 	<div>
-		<button type="submit" class="btn btn-primary"><?php echo Text::_('MOD_ADMIN_REVARS_SUBMIT'); ?></button>
+		<button type="submit"
+				class="<?php echo $params->get('button_class', 'btn btn-primary'); ?>">
+			<?php echo Text::_($params->get('button_text', 'MOD_ADMIN_REVARS_SUBMIT')); ?>
+		</button>
 	</div>
 </form>

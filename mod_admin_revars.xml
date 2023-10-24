@@ -30,6 +30,10 @@
 					   addfieldprefix="Joomla\Module\AdminRevars\Administrator\Field"
 					   layout="joomla.form.field.list-fancy-select"
 					   multiple="true"/>
+				<field name="button_text" type="text"
+					   label="MOD_ADMIN_REVARS_PARAMS_BUTTON_TEXT"/>
+				<field name="button_class" type="text"
+					   label="MOD_ADMIN_REVARS_PARAMS_BUTTON_CLASS"/>
 			</fieldset>
 			<fieldset name="advanced">
 				<field name="layout" type="modulelayout"

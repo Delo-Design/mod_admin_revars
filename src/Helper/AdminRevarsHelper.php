@@ -210,6 +210,8 @@ class AdminRevarsHelper
 	/**
 	 * Method to get revars plugin object.
 	 *
+	 * @throws \Exception
+	 *
 	 * @return mixed Plugin object on success, False on failure.
 	 *
 	 * @since __DEPLOY_VERSION__
@@ -229,8 +231,13 @@ class AdminRevarsHelper
 					$variable['key']                                 = $v;
 					$plugin->params_variables[$variable['variable']] = $variable;
 				}
-				$plugin->link = Route::link('administrator',
-					'index.php?option=com_plugins&task=plugin.edit&extension_id=' . $plugin->id);
+
+				$plugin->link = false;
+				if (Factory::getApplication()->getIdentity()->authorise('core.edit', 'com_plugins'))
+				{
+					$plugin->link = Route::link('administrator',
+						'index.php?option=com_plugins&task=plugin.edit&extension_id=' . $plugin->id);
+				}
 			}
 
 			self::$_plugin = $plugin;
